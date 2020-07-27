@@ -2,6 +2,7 @@ package com.cursoejemplo.backend.apirest.controllers;
 
 import com.cursoejemplo.backend.apirest.model.entity.Producto;
 import com.cursoejemplo.backend.apirest.model.services.IProductoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ import java.util.Optional;
 @RequestMapping("/api")
 public class ProductoRestController {
 
+    @Autowired
     private IProductoService productoService;
 
     @GetMapping("/productos/page/{page}")
@@ -32,13 +34,13 @@ public class ProductoRestController {
     }
 
     @Secured({"ROLE_ADMIN", "ROLE_USER"})
-    @GetMapping("/productos/{categorias}")
-    public ResponseEntity<?> listarPorCategorias(@PathVariable String categorias) {
-        return ResponseEntity.status(HttpStatus.OK).body(productoService.findAllCategorias(categorias));
+    @GetMapping("/productos/filtar-categoria/{nombre}")
+    public ResponseEntity<?> listarPorCategorias(@PathVariable String nombre) {
+        return ResponseEntity.status(HttpStatus.OK).body(productoService.findAllCategorias(nombre));
     }
 
     @Secured({"ROLE_ADMIN", "ROLE_USER"})
-    @GetMapping("/productos/{id}")
+    @GetMapping("/productos/buscar/{id}")
     public ResponseEntity<?> find(@PathVariable Long id) {
         Optional<Producto> productoOptional = productoService.findById(id);
 

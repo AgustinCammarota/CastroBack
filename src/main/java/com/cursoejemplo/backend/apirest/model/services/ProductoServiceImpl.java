@@ -2,15 +2,19 @@ package com.cursoejemplo.backend.apirest.model.services;
 
 import com.cursoejemplo.backend.apirest.model.dao.IProductoDao;
 import com.cursoejemplo.backend.apirest.model.entity.Producto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class ProductoServiceImpl implements IProductoService {
 
+    @Autowired
     private IProductoDao productoDao;
 
     @Transactional(readOnly = true)
@@ -22,7 +26,7 @@ public class ProductoServiceImpl implements IProductoService {
     @Transactional(readOnly = true)
     @Override
     public List<Producto> findAllCategorias(String categoria) {
-        return productoDao.buscarPorCategoria(categoria);
+        return productoDao.findByCategoriaContainingIgnoreCase(categoria);
     }
 
     @Transactional(readOnly = true)

@@ -24,7 +24,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Override//Reglas de seguridad para los endPoints o rutas de acceso a los recursos
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/clientes/page/**",
-                "/api/uploads/img/**", "/images/**", "/api/productos/page/**", "/api/productos").permitAll() .anyRequest().authenticated().
+                "/api/uploads/img/**", "/images/**", "/api/productos/page/**").permitAll() .anyRequest().authenticated().
                 and().cors().configurationSource(corsConfigurationSource());
     }
 
