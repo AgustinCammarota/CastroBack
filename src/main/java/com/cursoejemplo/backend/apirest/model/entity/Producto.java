@@ -28,6 +28,8 @@ public class Producto implements Serializable {
     @NotEmpty
     private String categoria;
 
+    private String foto;
+
     @Column(name = "create_at")
     @Temporal(TemporalType.DATE)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -84,5 +86,13 @@ public class Producto implements Serializable {
 
     public void setCreateAt(Date createAt) {
         this.createAt = createAt;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 }

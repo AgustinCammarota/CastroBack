@@ -141,7 +141,6 @@ public class ClienteRestController {
         try {
             clienteActual = clienteService.findById(id);
             String nameFileOld = clienteActual.getFoto();
-            //Si borramos un cliente que se borre la foto que tenga asociada.
             uploadFileService.eliminarFile(nameFileOld);
             clienteService.delete(id);
         }catch (DataAccessException e) {
